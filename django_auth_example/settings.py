@@ -24,6 +24,8 @@ SECRET_KEY = 'e_d-*d^al%=cx5&#02y-a-og2tu@uhy@l*uwqmtc%y&@fhlblr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+TEMPLATE_DEBUG = True
+
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -35,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'ckeditor',
     'ckeditor_uploader',
     'users',
     'manual',
+    'uploadblock',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'django_auth_example.urls'
@@ -67,6 +73,10 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+INTERNAL_IPS = [
+    '127.0.0.1',
 ]
 
 WSGI_APPLICATION = 'django_auth_example.wsgi.application'
@@ -112,6 +122,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+LANGUAGES = (
+    ('en',('English')),
+)
+
+LOCALE_PATHS = (os.path.join(BASE_DIR,'locale'),)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.i18n"
+)
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
@@ -135,5 +155,9 @@ OR_CONFIGS = {
     },
 }
 
-#一会写图片添加路径
-CKEDITOR_UPLOAD_PATH = ''
+
+MEDIA_URL = '/file/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'static/photo')
+
+CKEDITOR_UPLOAD_PATH = 'content/ckeditor/file/'

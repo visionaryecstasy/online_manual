@@ -18,17 +18,22 @@ from django.contrib import admin
 
 import users.views as user_views
 import manual.views as manual_views
+import uploadblock.models as uploadblock_views
 
-
-urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    # 别忘记在顶部引入 include 函数
-    url(r'^users/', include('users.urls')),
-    url(r'^users/', include('django.contrib.auth.urls')),
-    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-    url(r'^$', user_views.index, name='index'),
-    url(r'chapter1/', manual_views.python_data_chapter1, name='chapter1'),
-    url(r'chapter2/', manual_views.python_data_chapter2, name='chapter2'),
-    url(r'chapter3/', manual_views.python_data_chapter3, name='chapter3'),
-    url(r'notification_board/', manual_views.notification_board, name='notification_board'),
+from django.conf import settings
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        url(r'^__debug', include(debug_toolbar.urls)),
+        url(r'^admin/', admin.site.urls),
+        url(r'^users/', include('users.urls')),
+        url(r'^users/', include('django.contrib.auth.urls')),
+        url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+        url(r'^$', user_views.index, name='index'),
+        #url(r'^manual/', include('manual.urls')),
+        url(r'chapter1/', manual_views.python_data_chapter1, name='chapter1'),
+        url(r'chapter2/', manual_views.python_data_chapter2, name='chapter2'),
+        url(r'chapter3/', manual_views.python_data_chapter3, name='chapter3'),
+        url(r'notification_board/', manual_views.notification_board, name='notification_board'),
+        url(r'show_files/', uploadblock_views.file, name='upload_files'),
 ]
