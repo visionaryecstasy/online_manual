@@ -160,4 +160,4 @@ MEDIA_URL = '/file/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/photo')
 
-CKEDITOR_UPLOAD_PATH = 'content/ckeditor/file/'
+CKEDITOR_UPLOAD_PATH = 'content/ckeditor/show_files/'

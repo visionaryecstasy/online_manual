@@ -18,7 +18,7 @@
         <div class="flex-center">
             <div class="unit-1-2 unit-1-on-mobile">
                 <h1><a href="{% url 'index' %}">Dentistry School Online Manual</a></h1>
-                <h3>注册</h3>
+                <h3>Register</h3>
                 <form class="form" action="{% url 'users:register' %}" method="post">
                     {% csrf_token %}
                     {% for field in form %}
@@ -29,11 +29,11 @@
                             <p class="help text-small text-muted">{{ field.help_text|safe }}</p>
                         {% endif %}
                     {% endfor %}
-                    <button type="submit" class="btn btn-primary btn-block">注册</button>
+                    <button type="submit" class="btn btn-primary btn-block">Register</button>
                     <input type="hidden" name="next" value="{{ next }}"/>
                 </form>
                 <div class="flex-center top-gap text-small">
-                    <a href="{% url 'login' %}">已有账号登录</a>
+                    <a href="{% url 'login' %}">Login with exist account</a>
                 </div>
             </div>
         </div>

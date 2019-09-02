@@ -7,3 +7,5 @@ from .models import comment
 admin.site.register(Manual)
 admin.site.register(Message)
 admin.site.register(comment)
+
+admin.site.site_title = "Online Manual Management System"
